@@ -20,7 +20,7 @@ RUN         mkdir /var/empty && \
             wget https://www.opensmtpd.org/archives/libasr-${OPENSMTPD_VERSION}.tar.gz && \
             tar xvzf libasr-${OPENSMTPD_VERSION}.tar.gz && \
             wget https://www.opensmtpd.org/archives/opensmtpd-portable-${OPENSMTPD_VERSION}.tar.gz && \
-            tar xvzf opensmtpd-portable-${OPENSMTPD_VERSION}.tar.gz && \
+            tar xvzf opensmtpd-portable-${OPENSMTPD_VERSION}.tar.gz
 WORKDIR     /tmp/libasr-*
 RUN         ./configure && make && make install
 WORKDIR     /tmp/opensmtpd-*
