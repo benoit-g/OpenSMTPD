@@ -20,7 +20,7 @@ RUN         mkdir /var/empty && \
             useradd -c "SMTPD Queue" -d /var/empty -s /sbin/nologin _smtpq && \
             wget https://www.opensmtpd.org/archives/libasr-${LIBASR_VERSION}.tar.gz && \
             tar xvzf libasr-${LIBASR_VERSION}.tar.gz && \
-            wget https://www.opensmtpd.org/archives/opensmtpd-portable-${OPENSMTPD_VERSION}.tar.gz && \
+            wget https://www.opensmtpd.org/archives/opensmtpd-${OPENSMTPD_VERSION}.tar.gz && \
             tar xvzf opensmtpd-${OPENSMTPD_VERSION}.tar.gz
 WORKDIR     /tmp/libasr-${LIBASR_VERSION}
 RUN         ./configure && make && make install
