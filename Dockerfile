@@ -4,7 +4,7 @@ MAINTAINER  Benoit <benoit@terra-art.net>
 # Set Environement variables
 ENV         LC_ALL=C
 ENV         DEBIAN_FRONTEND=noninteractive
-ENV         OpenSMTPD_VERSION=latest
+ENV         OPENSMTPD_VERSION=latest
 
 # Update package repository and install packages
 RUN         apt-get -y update && \
@@ -17,15 +17,15 @@ RUN         test ! -x /usr/local/sbin/smtpd && \
             mkdir /var/empty && \
             useradd -c "SMTP Daemon" -d /var/empty -s /sbin/nologin _smtpd && \
             useradd -c "SMTPD Queue" -d /var/empty -s /sbin/nologin _smtpq && \
-            wget https://www.opensmtpd.org/archives/libasr-${OpenSMTPD_VERSION}.tar.gz && \
-            tar xvzf libasr-${OpenSMTPD_VERSION}.tar.gz && \
+            wget https://www.opensmtpd.org/archives/libasr-${OPENSMTPD_VERSION}.tar.gz && \
+            tar xvzf libasr-${OPENSMTPD_VERSION}.tar.gz && \
             cd libasr* && \
             ./configure && \
             make && \
             make install &&
             cd .. && \
-            wget https://www.opensmtpd.org/archives/opensmtpd-portable-${OpenSMTPD_VERSION}.tar.gz && \
-            tar xvzf opensmtpd-portable-${OpenSMTPD_VERSION}.tar.gz && \
+            wget https://www.opensmtpd.org/archives/opensmtpd-portable-${OPENSMTPD_VERSION}.tar.gz && \
+            tar xvzf opensmtpd-portable-${OPENSMTPD_VERSION}.tar.gz && \
             cd opensmtpd* && \
             ./configure && \
             make && \
