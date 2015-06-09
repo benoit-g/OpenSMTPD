@@ -14,7 +14,7 @@ RUN         apt-get -y update && \
 
 # Fetch the latest software version from the official website if needed
 RUN         test ! -x /usr/local/sbin/smtpd && \
-            mkdir /var/empty && /
+            mkdir /var/empty && \
             useradd -c "SMTP Daemon" -d /var/empty -s /sbin/nologin _smtpd && \
             useradd -c "SMTPD Queue" -d /var/empty -s /sbin/nologin _smtpq && \
             wget https://www.opensmtpd.org/archives/libasr-${OpenSMTPD_VERSION}.tar.gz && \
@@ -29,7 +29,9 @@ RUN         test ! -x /usr/local/sbin/smtpd && \
             cd opensmtpd* && \
             ./configure && \
             make && \
-            make install
+            make install && \
+            cd .. && \
+            rm -rf libasr* opensmtpd*
 
 # Add configuration files. User can provides customs files using -v in the image startup command line.
 COPY        smtpd.conf /etc/mail/smtpd.conf
