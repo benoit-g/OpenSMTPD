@@ -16,22 +16,25 @@ RUN         apt-get -y update && \
 RUN         test ! -x /usr/local/sbin/smtpd && \
             mkdir /var/empty && \
             useradd -c "SMTP Daemon" -d /var/empty -s /sbin/nologin _smtpd && \
-            useradd -c "SMTPD Queue" -d /var/empty -s /sbin/nologin _smtpq && \
-            wget https://www.opensmtpd.org/archives/libasr-${OPENSMTPD_VERSION}.tar.gz && \
+            useradd -c "SMTPD Queue" -d /var/empty -s /sbin/nologin _smtpq
+            #&& \
+RUN         wget https://www.opensmtpd.org/archives/libasr-${OPENSMTPD_VERSION}.tar.gz && \
             tar xvzf libasr-${OPENSMTPD_VERSION}.tar.gz && \
             cd libasr* && \
             ./configure && \
             make && \
             make install &&
-            cd .. && \
-            wget https://www.opensmtpd.org/archives/opensmtpd-portable-${OPENSMTPD_VERSION}.tar.gz && \
+            cd ..
+            # && \
+RUN         wget https://www.opensmtpd.org/archives/opensmtpd-portable-${OPENSMTPD_VERSION}.tar.gz && \
             tar xvzf opensmtpd-portable-${OPENSMTPD_VERSION}.tar.gz && \
             cd opensmtpd* && \
             ./configure && \
             make && \
             make install && \
-            cd .. && \
-            rm -rf libasr* opensmtpd*
+            cd ..
+# && \
+ RUN           rm -rf libasr* opensmtpd*
 
 # Add configuration files. User can provides customs files using -v in the image startup command line.
 COPY        smtpd.conf /etc/mail/smtpd.conf
