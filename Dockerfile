@@ -29,9 +29,7 @@ RUN         test ! -x /usr/local/sbin/smtpd && \
             cd opensmtpd* && \
             ./configure && \
             make && \
-            make install && \
-            mkdir -p /etc/mail && \
-            ln -ls /etc/aliases /etc/mail/aliases
+            make install
 
 # Add configuration files. User can provides customs files using -v in the image startup command line.
 COPY        smtpd.conf /etc/mail/smtpd.conf
