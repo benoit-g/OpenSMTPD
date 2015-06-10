@@ -23,9 +23,9 @@ RUN         mkdir /var/empty && \
             wget https://www.opensmtpd.org/archives/opensmtpd-${OPENSMTPD_VERSION}.tar.gz && \
             tar xvzf opensmtpd-${OPENSMTPD_VERSION}.tar.gz
 WORKDIR     /tmp/libasr-${LIBASR_VERSION}
-RUN         ./configure && make && make install
+RUN         ./configure && /usr/bin/make && /usr/bin/make install
 WORKDIR     /tmp/opensmtpd-${OPENSMTPD_VERSION}
-RUN         ./configure && make && make install
+RUN         ./configure && /usr/bin/make && /usr/bin/make install
 WORKDIR     /tmp
 RUN         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
