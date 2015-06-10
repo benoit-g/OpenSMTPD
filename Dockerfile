@@ -9,7 +9,7 @@ ENV         OPENSMTPD_VERSION=201506020910p1
 
 # Update package repository and install packages
 RUN         apt-get -y update && \
-            apt-get -y install automake autoconf bison libssl-dev libevent-dev libtool wget && \
+            apt-get -y install automake autoconf bison libssl-dev libevent-dev libtool make wget && \
             apt-get clean
             
 
@@ -23,9 +23,9 @@ RUN         mkdir /var/empty && \
             wget https://www.opensmtpd.org/archives/opensmtpd-${OPENSMTPD_VERSION}.tar.gz && \
             tar xvzf opensmtpd-${OPENSMTPD_VERSION}.tar.gz
 WORKDIR     /tmp/libasr-${LIBASR_VERSION}
-RUN         ./configure && /usr/bin/make && /usr/bin/make install
+RUN         ./configure && make && make install
 WORKDIR     /tmp/opensmtpd-${OPENSMTPD_VERSION}
-RUN         ./configure && /usr/bin/make && /usr/bin/make install
+RUN         ./configure && make && make install
 WORKDIR     /tmp
 RUN         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
