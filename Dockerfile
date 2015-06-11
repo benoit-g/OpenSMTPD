@@ -25,7 +25,7 @@ RUN         mkdir /var/empty && \
 WORKDIR     /tmp/libasr-${LIBASR_VERSION}
 RUN         ./configure && make && make install
 WORKDIR     /tmp/opensmtpd-${OPENSMTPD_VERSION}
-RUN         ./configure && make && make install
+RUN         ./configure && make && make install && make clean
 WORKDIR     /tmp
 RUN         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
